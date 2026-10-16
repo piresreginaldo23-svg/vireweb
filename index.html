@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VireWeb — Sites + Marketing Digital</title>
+    <meta name="google-site-verification" content="Ed7FD1BI3zQSZRYW3I_g9LBadOCjNbPAeFrmRfS4RTI" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Arial', sans-serif; color: #fff; }
+
+        /* ---------- TELA INICIAL ---------- */
+        .inicio {
+            min-height: 100vh;
+            background: url('VireWeb.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            padding: 20px 50px;
+            gap: 60px;
+        }
+        .lado-esquerdo { flex: 2; text-align: left; }
+        .titulo {
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            color: #00e5ff;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .frase-destaque {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: #00c853;
+            font-weight: bold;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            text-shadow: 0 0 10px rgba(0, 200, 83, 0.3);
+        }
+        .subtitulo {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: #ddd;
+            margin-bottom: 35px;
+            max-width: 520px;
+            line-height: 1.8;
+        }
+        .destaque-verde { color: #00c853; font-weight: bold; }
+        .botoes { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .btn-principal {
+            background-color: #00c853; color: #fff; border: none;
+            padding: clamp(14px, 3vw, 20px) clamp(25px, 5vw, 40px);
+            font-size: clamp(16px, 3vw, 19px); font-weight: bold;
+            border-radius: 50px; cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 200, 83, 0.5);
+            transition: all 0.3s ease;
+        }
+        .btn-principal:hover { background-color: #009624; transform: scale(1.05); }
+
+        .btn-secundario {
+            background-color: transparent; color: #00e5ff;
+            border: 2px solid #00e5ff;
+            padding: clamp(14px, 3vw, 20px) clamp(25px, 5vw, 40px);
+            font-size: clamp(16px, 3vw, 19px); font-weight: bold;
+            border-radius: 50px; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-secundario:hover { background-color: #00e5ff; color: #000; transform: scale(1.05); }
+
+        /* ---------- MENU LATERAL ---------- */
+        .menu-lateral {
+            flex: 1; display: flex; flex-direction: column; gap: 20px;
+            border-left: 2px solid rgba(0, 229, 255, 0.3);
+            padding-left: 30px;
+        }
+        .menu-lateral a {
+            color: #fff; text-decoration: none; font-size: clamp(17px, 3vw, 20px);
+            font-weight: bold; padding: 8px 0; border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .menu-lateral a:hover { color: #00e5ff; border-bottom-color: #00e5ff; transform: translateX(8px); }
+
+        /* ---------- SEÇÕES GERAIS ---------- */
+        section { min-height: 100vh; padding: 80px 30px; }
+        .fundo-escuro { background: linear-gradient(135deg, #0a1929, #112240); }
+        .fundo-meio { background: linear-gradient(135deg, #112240, #0a1929); }
+        .conteudo { max-width: 900px; margin: 0 auto; }
+        h2 { font-size: clamp(1.8rem, 6vw, 3rem); color: #00e5ff; margin-bottom: 30px; }
+        p { font-size: 1.1rem; line-height: 1.8; color: #ddd; margin-bottom: 20px; }
+
+        .caixa-destaque {
+            background: rgba(0, 200, 83, 0.1); border-left: 4px solid #00c853;
+            padding: 25px; border-radius: 8px; margin: 30px 0;
+        }
+        .caixa-aviso {
+            background: rgba(0, 229, 255, 0.1); border: 2px solid #00e5ff;
+            padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0;
+        }
+        .servico {
+            background: rgba(0, 229, 255, 0.08); border-left: 4px solid #00e5ff;
+            padding: 25px; margin-bottom: 20px; border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .servico:hover { transform: translateX(10px); background: rgba(0, 229, 255, 0.15); }
+        .servico h3 { color: #00c853; margin-bottom: 10px; font-size: 1.3rem; }
+
+        /* ---------- PORTFÓLIO ---------- */
+        .grade-portfolio {
+            display: flex; flex-wrap: wrap; gap: 25px; margin-top: 40px;
+        }
+        .trabalho {
+            flex: 1; min-width: 280px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px; padding: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s; text-align: center;
+        }
+        .trabalho:hover { border-color: #00c853; transform: translateY(-5px); }
+        .trabalho .imagem {
+            background: linear-gradient(135deg, #00e5ff33, #00c85333);
+            height: 150px; border-radius: 8px; margin-bottom: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem;
+        }
+        .trabalho h3 { color: #00e5ff; margin-bottom: 8px; }
+        .trabalho p { color: #aaa; font-size: 0.95rem; }
+
+        /* ---------- ✅ ÁREA DOS PARCEIROS / SÓCIOS ---------- */
+        .secao-parceiros {
+            background: linear-gradient(135deg, #0f2a1a, #0a1929);
+            border-top: 3px solid #00c853;
+            border-bottom: 3px solid #00c853;
+        }
+        .cabecalho-parceiros {
+            text-align: center; margin-bottom: 50px;
+        }
+        .cabecalho-parceiros h2 {
+            color: #00c853; font-size: clamp(2rem, 6vw, 3.2rem);
+            text-shadow: 0 0 15px rgba(0, 200, 83, 0.4);
+        }
+        .cabecalho-parceiros p {
+            font-size: 1.2rem; color: #aaa; max-width: 600px; margin: 0 auto;
+        }
+        .grade-parceiros {
+            display: flex; flex-wrap: wrap; gap: 30px;
+            margin-top: 40px;
+        }
+        .parceiro {
+            flex: 1; min-width: 300px;
+            background: rgba(0, 200, 83, 0.08);
+            border: 2px solid #00c853;
+            border-radius: 15px; padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(0, 200, 83, 0.1);
+        }
+        .parceiro:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 0 25px rgba(0, 200, 83, 0.3);
+            border-color: #00e5ff;
+        }
+        .parceiro .logo-empresa {
+            font-size: 3.5rem; margin-bottom: 15px;
+        }
+        .parceiro h3 {
+            font-size: 1.6rem; color: #00e5ff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .parceiro .ramo {
+            color: #00c853; font-weight: bold;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+        .parceiro .descricao {
+            color: #ccc; font-size: 0.98rem;
+            line-height: 1.7; margin-bottom: 20px;
+        }
+        .parceiro .link {
+            display: inline-block; color: #00e5ff;
+            text-decoration: none; font-weight: bold;
+            padding: 10px 25px; border: 2px solid #00e5ff;
+            border-radius: 50px; transition: all 0.3s;
+        }
+        .parceiro .link:hover {
+            background: #00e5ff; color: #000;
+        }
+        .chamada-parceiro {
+            text-align: center; margin-top: 50px; padding: 30px;
+            background: rgba(0, 229, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        /* ---------- PRODUTOS DIVULGADOS ---------- */
+        .produto {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px; padding: 30px;
+            margin-bottom: 30px; border: 2px solid #00c853;
+            text-align: center;
+        }
+        .produto h3 { font-size: 1.5rem; color: #00e5ff; margin-bottom: 10px; }
+        .produto .preco {
+            font-size: 2rem; color: #00c853; font-weight: bold; margin: 15px 0;
+        }
+        .produto .botao-comprar {
+            display: inline-block; background: #00c853; color: #fff;
+            padding: 15px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: bold; font-size: 1.1rem;
+            margin-top: 10px; transition: all 0.3s;
+        }
+        .produto .botao-comprar:hover { background: #009624; transform: scale(1.05); }
+        .aviso-pontes {
+            margin-top: 20px; padding: 15px;
+            background: rgba(0, 229, 255, 0.1);
+            border-radius: 8px; font-size: 0.95rem;
+        }
+
+        /* ---------- PACOTES ---------- */
+        .grade-pacotes {
+            display: flex; flex-wrap: wrap; gap: 25px; margin-top: 40px;
+        }
+        .pacote {
+            flex: 1; min-width: 280px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px; padding: 30px 25px;
+            border: 2px solid transparent; text-align: center;
+            transition: all 0.3s;
+        }
+        .pacote:hover { transform: translateY(-8px); border-color: #00e5ff; }
+        .pacote.destaque {
+            border-color: #00c853; transform: scale(1.05);
+            background: rgba(0, 200, 83, 0.1);
+        }
+        .pacote .icone { font-size: 3rem; margin-bottom: 10px; }
+        .pacote h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .pacote .preco {
+            font-size: 2rem; font-weight: bold; color: #00e5ff; margin-bottom: 20px;
+        }
+        .pacote ul { list-style: none; text-align: left; margin-bottom: 25px; }
+        .pacote li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .pacote li::before { content: "✅ "; color: #00c853; }
+        .pacote .btn {
+            width: 100%; padding: 14px; font-size: 1rem;
+            border-radius: 8px; border: none; font-weight: bold; cursor: pointer;
+            background: #00c853; color: #fff; transition: all 0.3s;
+        }
+        .pacote .btn:hover { background: #009624; }
+
+        .contato-item {
+            font-size: 1.2rem; margin: 25px 0; display: flex;
+            align-items: center; gap: 15px;
+        }
+        .contato-item a { color: #00e5ff; text-decoration: none; }
+
+        /* ---------- RESPONSIVO ---------- */
+        @media (max-width: 768px) {
+            .inicio { flex-direction: column; text-align: center; padding: 40px 20px; gap: 40px; }
+            .lado-esquerdo { text-align: center; }
+            .botoes { justify-content: center; }
+            .menu-lateral {
+                border-left: none; border-top: 2px solid rgba(0, 229, 255, 0.3);
+                padding-left: 0; padding-top: 30px; width: 100%;
+                flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 12px;
+            }
+            .menu-lateral a:hover { transform: translateY(-5px); }
+            .pacote.destaque { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TELA INICIAL -->
+    <div class="inicio">
+        <div class="lado-esquerdo">
+            <h1 class="titulo">VIREWEB</h1>
+            
+            <p class="frase-destaque">
+                🌉 VireWeb é a ponte entre o seu sonho<br>
+                e uma realidade possível!
+            </p>
+            
+            <p class="subtitulo">
+                🚀 Criamos o seu site profissional e fazemos o Marketing Digital para divulgarmos os seus produtos e a sua empresa, para que você possa crescer cada vez mais no mercado digital!
+            </p>
+            
+            <div class="botoes">
+                <a href="#parceiros"><button class="btn-principal">🤝 Nossos Parceiros</button></a>
+                <a href="#portfolio"><button class="btn-secundario">🏆 Trabalhos</button></a>
+                <a href="#produtos"><button class="btn-secundario">🛒 Produtos</button></a>
+                <a href="#contato"><button class="btn-principal">💬 Falar Conosco</button></a>
+            </div>
+        </div>
+
+        <div class="menu-lateral">
+            <a href="#sobre">Sobre Nós</a>
+            <a href="#parceiros">Parceiros</a>
+            <a href="#portfolio">Trabalhos</a>
+            <a href="#servicos">Criar Site</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#pacotes">Pacotes</a>
+            <a href="#contato">Contato</a>
+        </div>
+    </div>
+
+    <!-- SEÇÃO SOBRE -->
+    <section id="sobre" class="fundo-escuro">
+        <div class="conteudo">
+            <h2>Sobre o VireWeb</h2>
+            <p>O VireWeb nasceu de uma ideia simples: <strong>colocar o poder da internet ao alcance de todo mundo</strong>, sem complicação e sem preço absurdo.</p>
+            <p>Sou eu, Reginaldo, trabalhando direto com você. Sem robô, sem empresa gigante no meio. Atendo do jeito que você precisa, com atenção de verdade.</p>
+            <div class="caixa-destaque">
+                <p><strong>✅ O que fazemos:</strong></p>
+                <p>🌉 Ponte entre o seu sonho e a realidade — transformamos sua ideia em presença digital</p>
+                <p>🏆 Sites profissionais criados com dedicação</p>
+                <p>🤝 Parcerias sólidas — crescemos junto com empresas que confiam em nós</p>
+                <p>🛒 Divulgação de produtos — conectamos você à qualidade</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ ÁREA DOS PARCEIROS / SÓCIOS — BEM DESTACADA! -->
+    <section id="parceiros" class="secao-parceiros">
+        <div class="conteudo">
+            <div class="cabecalho-parceiros">
+                <h2>🤝 Nossos Parceiros & Empresas Parceiras</h2>
+                <p>Empresas que confiaram no VireWeb e estão crescendo junto conosco! 💚</p>
+            </div>
+
+            <div class="grade-parceiros">
+                <!-- PARCEIRO 1 -->
+                <div class="parceiro">
+                    <div class="logo-empresa">🏢</div>
+                    <h3>Nome da Empresa Parceira 1</h3>
+                    <p class="ramo">Ramo: Ex. Móveis / Construção / Comércio</p>
+                    <p class="descricao">
+                        Breve apresentação da empresa — o que faz, qualidade, diferenciais. 
+                        Aqui o cliente vê com clareza quem é nosso parceiro de confiança!
+                    </p>
+                    <a href="LINK_DA_EMPRESA_AQUI" target="_blank" class="link">🔗 Conhecer a Empresa</a>
+                </div>
+
+                <!-- PARCEIRO 2 -->
+                <div class="parceiro">
+                    <div class="logo-empresa">🛋️</div>
+                    <h3>Nome da Empresa Parceira 2</h3>
+                    <p class="ramo">Ramo: Ex. Fabricação / Varejo / Serviços</p>
+                    <p class="descricao">
+                        Apresentação da segunda empresa parceira. Destaque para qualidade, 
+                        confiança e compromisso com o cliente.
+                    </p>
+                    <a href="LINK_DA_EMPRESA_AQUI" target="_blank" class="link">🔗 Conhecer a Empresa</a>
+                </div>
+
+                <!-- PARCEIRO 3 -->
+                <div class="parceiro">
+                    <div class="logo-empresa">🏭</div>
+                    <h3>Nome da Fábrica / Parceiro 3</h3>
+                    <p class="ramo">Ramo: Ex. Fabricação Direta / Indústria</p>
+                    <p class="descricao">
+                        Fábrica parceira — produtos de qualidade direto da fonte. 
+                        Compra direto, sem intermediários, com garantia!
+                    </p>
+                    <a href="LINK_DA_EMPRESA_AQUI" target="_blank" class="link">🔗 Conhecer a Fábrica</a>
+                </div>
+            </div>
+
+            <div class="chamada-parceiro">
+                <h3>💼 Quer ser nosso parceiro também?</h3>
+                <p>Feche com a gente e sua empresa aparecerá em destaque aqui! Crescemos juntos! 🚀</p>
+                <a href="#contato"><button class="btn-principal" style="margin-top: 15px;">Quero Ser Parceiro!</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOSSOS TRABALHOS REALIZADOS -->
+    <section id="portfolio" class="fundo-meio">
+        <div class="conteudo">
+            <h2>🏆 Nossos Trabalhos Realizados</h2>
+            <p>Confira os sites que já criamos! Cada projeto é um sonho que se tornou realidade na internet! 💚</p>
+
+            <div class="grade-portfolio">
+                <div class="trabalho">
+                    <div class="imagem">✂️</div>
+                    <h3>Barbearia do Zé</h3>
+                    <p>Site com agendamento pelo WhatsApp, galeria de cortes e horários.</p>
+                </div>
+                <div class="trabalho">
+                    <div class="imagem">🛍️</div>
+                    <h3>Loja de Roupas Maria</h3>
+                    <p>Vitrine virtual com produtos, preços e pedido direto no WhatsApp.</p>
+                </div>
+                <div class="trabalho">
+                    <div class="imagem">🏢</div>
+                    <h3>Empresa de Construção</h3>
+                    <p>Apresentação profissional, portfólio de obras e contato.</p>
+                </div>
+                <div class="trabalho">
+                    <div class="imagem">🍽️</div>
+                    <h3>Restaurante Sabor Caseiro</h3>
+                    <p>Cardápio online, localização e reserva pelo WhatsApp.</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; font-size: 1.2rem;">
+                Quer ver o seu negócio aqui também? <a href="#contato" style="color:#00e5ff">Fale comigo →</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- CRIAÇÃO DE SITES -->
+    <section id="servicos" class="fundo-escuro">
+        <div class="conteudo">
+            <h2>Criação de Sites Profissionais</h2>
+            <div class="servico">
+                <h3>✂️ Barbearias e Salões</h3>
+                <p>Agendamento pelo WhatsApp, galeria, horários. Seu cliente agenda a qualquer hora!</p>
+            </div>
+            <div class="servico">
+                <h3>🛍️ Lojas e Comércio</h3>
+                <p>Vitrine virtual, produtos, pedido direto no WhatsApp. Vende sem plataforma cara!</p>
+            </div>
+            <div class="servico">
+                <h3>🏢 Empresas e Serviços</h3>
+                <p>Apresentação profissional, portfólio, contato. Sua empresa aberta 24h!</p>
+            </div>
+            <div class="servico">
+                <h3>📈 Apareça no Google</h3>
+                <p>Configurado para aparecer nas buscas da sua região. Mais visitas = mais clientes!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUTOS DIVULGADOS -->
+    <section id="produtos" class="fundo-meio">
+        <div class="conteudo">
+            <h2>🛒 Produtos Divulgados</h2>
+            <p>Conheça produtos selecionados dos nossos parceiros! Qualidade garantida! 💚</p>
+
+            <div class="caixa-aviso">
+                <strong>🔗 Como funciona?</strong><br>
+                O VireWeb é apenas a <span class="destaque-verde">ponte de indicação</span> entre você e a fábrica/empresa parceira.<br>
+                <strong>A compra é feita direto com a empresa,</strong> com eles você negocia, paga e recebe.<br>
+                Nós não cobramos nada a mais — nossa indicação é gratuita!
+            </div>
+
+            <div class="produto">
+                <h3>📦 Nome do Produto</h3>
+                <p>Descrição do produto, suas características e diferenciais.</p>
+                <p class="preco">Valor direto com a fábrica</p>
+                <a href="LINK_DA_FABRICA_AQUI" target="_blank" class="botao-comprar">✅ Comprar direto na Fábrica</a>
+                <div class="aviso-pontes">
+                    ⚠️ Ao clicar, você vai para a empresa parceira. VireWeb é só a ponte de indicação.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PACOTES -->
+    <section id="pacotes" class="fundo-escuro">
+        <div class="conteudo">
+            <h2>Escolha o Seu Plano 🚀</h2>
+            <p style="text-align: center; margin-bottom: 10px;">Site profissional ou parceria de divulgação — você decide!</p>
+
+            <div class="grade-pacotes">
+                <div class="pacote">
+                    <div class="icone">🚀</div>
+                    <h3>Básico</h3>
+                    <p class="preco">Sob Consulta</p>
+                    <ul>
+                        <li>Página profissional</li>
+                        <li>Funciona no celular</li>
+                        <li>Botão direto pro WhatsApp</li>
+                        <li>Seu endereço e telefone</li>
+                        <li>1 atualização no 1º mês</li>
+                    </ul>
+                    <button class="btn" onclick="document.location='#contato'">Pedir Orçamento</button>
+                </div>
+
+                <div class="pacote destaque">
+                    <div class="icone">🚀🚀</div>
+                    <h3>Completo</h3>
+                    <p class="preco">Mais Escolhido!</p>
+                    <ul>
+                        <li>Tudo do Básico +</li>
+                        <li>Seções: Sobre, Serviços, Contato</li>
+                        <li>Galeria de fotos/produtos</li>
+                        <li>Otimizado pro Google</li>
+                        <li>Divulgação inicial inclusa</li>
+                        <li>3 atualizações no 1º mês</li>
+                    </ul>
+                    <button class="btn" onclick="document.location='#contato'">Quero Este!</button>
+                </div>
+
+                <div class="pacote">
+                    <div class="icone">🚀🚀🚀</div>
+                    <h3>Parceiro Premium</h3>
+                    <p class="preco">Sob Consulta</p>
+                    <ul>
+                        <li>Tudo do Completo +</li>
+                        <li>✅ Sua empresa na área de Parceiros</li>
+                        <li>Divulgação contínua dos seus produtos</li>
+                        <li>Marketing Digital dedicado</li>
+                        <li>Manutenção 3 meses inclusa</li>
+                        <li>Prioridade no atendimento</li>
+                    </ul>
+                    <button class="btn" onclick="document.location='#contato'">Ser Parceiro!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="fundo-meio">
+        <div class="conteudo">
+            <h2>Fale Comigo 📞</h2>
+            <p>Quer um site? Quer ser nosso parceiro e aparecer em destaque? É só chamar! VireWeb — crescemos juntos! 💚</p>
+
+            <div class="contato-item">
+                💬 WhatsApp: 
+                <a href="https://wa.me/5532984932549" target="_blank">Clique aqui para conversar →</a>
+            </div>
+            <div class="contato-item">
+                📧 E-mail: contato@vireweb.com.br
+            </div>
+            <div class="contato-item">
+                📍 Atendimento em todo o Brasil
+            </div>
+
+            <div class="caixa-aviso">
+                <p><strong>📢 Mensagem automática:</strong></p>
+                "Olá! Recebi sua mensagem! Estou trabalhando no momento, mas te respondo assim que possível! Obrigado pelo contato! 🚀 Reginaldo — VireWeb"
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
